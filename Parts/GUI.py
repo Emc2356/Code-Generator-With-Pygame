@@ -10,7 +10,6 @@ class GUI:
 
     def draw(self):
         self.WIN.fill(self.BASE_COLOR)
-        pygame.display.update()
 
     def escape(self):
         """

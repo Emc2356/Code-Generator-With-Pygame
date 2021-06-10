@@ -1,13 +1,13 @@
 import pygame
 
 
-class button:
-    def __init__(self, color, x, y, width, WIN, height, text=''):
+class Button:
+    def __init__(self, color, x, y, WIDTH, HEIGHT, WIN, text=''):
         self.color = color
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
+        self.width = WIDTH
+        self.height = HEIGHT
         self.text = text
         self.WIN = WIN
 

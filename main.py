@@ -1,5 +1,6 @@
 from Parts.Code_Generator import Code_Generator as CG
 from Parts.GUI import GUI
+from Parts.Window_Buttons import Window_Buttons
 from Parts.Button import Button
 import pygame
 import pyperclip as pc
@@ -21,18 +22,24 @@ COLORS = {
 
 GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 GUI.set_window(TITLE="Password Manager")
-GUI.setup_setting_buttons()
 COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN, text="click to copy", color=COLORS["BLUE"])
+WD = Window_Buttons(WIDTH, HEIGHT, WIN)
+WD.setup_setting_buttons()
 clock = pygame.time.Clock()
 FPS = 60
 
 
-while True:
-    clock.tick(FPS)
+def draw():
     GUI.draw()
-
+    WD.draw()
     COPY_BUTTON.draw()
     pygame.display.update()
+
+
+while True:
+    clock.tick(FPS)
+    draw()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
             pygame.quit()

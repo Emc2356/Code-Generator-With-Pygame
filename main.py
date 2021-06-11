@@ -1,18 +1,22 @@
 from Parts.Code_Generator import Code_Generator as CG
-from Parts.GUI import GUI
-from Parts.Bar import Bar
 from Parts.Window_Buttons import Window_Buttons
 from Parts.Button import Button
-import pygame
+from Parts.Game import Game
+from Parts.GUI import GUI
+from Parts.Bar import Bar
 import pyperclip as pc
+import pygame
 
 
+# initialize pygame info
 pygame.init()
 pygame.font.init()
 
+# setup the main window
 WIDTH, HEIGHT = 500, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
+# setup a small color palette
 COLORS = {
     "WHITE": (255, 255, 255),
     "BLACK": (0, 0, 0),
@@ -21,39 +25,20 @@ COLORS = {
     "BLUE": (0, 0, 255)
 }
 
+# setup the classes instances
 GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
-GUI.set_window(TITLE="Password Manager")
+Cg = CG()
 COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN, text="click to copy", color=COLORS["BLUE"])
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
-WD.setup_setting_buttons()
 bar = Bar(WIDTH, HEIGHT, WIDTH/2 - 150/2, 20, 150, 50, COLORS["BLACK"], WIN, 50)
 clock = pygame.time.Clock()
 FPS = 60
 
 
-def draw():
-    GUI.draw()
-    WD.draw()
-    COPY_BUTTON.draw()
-    bar.draw()
-    pygame.display.update()
+game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Win_Buttons=WD, Cg=Cg, copy_button=COPY_BUTTON, clock=clock, FPS=FPS)
+game.run()
 
 
-while True:
-    clock.tick(FPS)
-    draw()
-
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
-            pygame.quit()
-            quit(-1)
-        # check if the user presses the copy_button to copy the code
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if COPY_BUTTON.is_over(pygame.mouse.get_pos()):
-                pc.copy("copy")
-
-# cg = CG()
-# cg.get_amount()
-# cg.ask_types()
-# cg.get_code()
+# Cg.get_amount()
+# Cg.ask_types()
+# Cg.get_code()

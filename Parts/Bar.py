@@ -13,6 +13,7 @@ class Bar:
         self.WIN = WIN
         self.font_size = font_size
         self.font = pygame.font.SysFont("comicsans", self.font_size)
+        self.text = ""
 
     def draw(self):
         """
@@ -21,6 +22,12 @@ class Bar:
         """
         # pygame.draw.rect(pygame.Surface, color: tuple, (x, y, width, height))
         pygame.draw.rect(self.WIN, self.color, (self.x, self.y, self.width, self.height))
+        text = self.font.render(str(self.text), 1, (255, 255, 255))
+        self.WIN.blit(text, (
+                            self.WIDTH/2 - text.get_width()/2,
+                            self.y/2 + text.get_height()/2
+                            )
+                      )
 
     def get_width(self):
         """

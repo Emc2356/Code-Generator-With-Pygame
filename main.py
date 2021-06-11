@@ -1,4 +1,4 @@
-from Parts.Code_Generator import Code_Generator
+from Parts.Code_Generator import Code_Generator as CG
 from Parts.GUI import GUI
 from Parts.Button import Button
 import pygame
@@ -21,6 +21,7 @@ COLORS = {
 
 GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 GUI.set_window(TITLE="Password Manager")
+GUI.setup_setting_buttons()
 COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN, text="click to copy", color=COLORS["BLUE"])
 clock = pygame.time.Clock()
 FPS = 60
@@ -36,11 +37,12 @@ while True:
         if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
             pygame.quit()
             quit(-1)
-        if COPY_BUTTON.is_over(pygame.mouse.get_pos()):
-            if event.type == pygame.MOUSEBUTTONDOWN:
+        # check if the user presses the copy_button to copy the code
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if COPY_BUTTON.is_over(pygame.mouse.get_pos()):
                 pc.copy("copy")
 
-# cg = Code_Generator()
+# cg = CG()
 # cg.get_amount()
 # cg.ask_types()
 # cg.get_code()

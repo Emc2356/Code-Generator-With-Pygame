@@ -14,6 +14,12 @@ class Window_Buttons:
             "GREEN": (0, 255, 0),
             "BLUE": (0, 0, 255)
         }
+        self.set_font = pygame.font.SysFont("comicsans", 30)
+        self.labels = [
+                  self.set_font.render("""press this for upper characters""", 1, self.COLORS["BLACK"]),
+                  self.set_font.render("""press this for lower characters""", 1, self.COLORS["BLACK"]),
+                  self.set_font.render("""press this for numbers""", 1, self.COLORS["BLACK"]),
+                  self.set_font.render("""press this for special characters""", 1, self.COLORS["BLACK"])]
         # settings buttons
         self.loc1_pressed = False
         self.loc2_pressed = False
@@ -42,6 +48,12 @@ class Window_Buttons:
             pygame.draw.circle(self.WIN, self.COLORS["GREEN"], self.loc4, self.rad)
         elif not self.loc4_pressed:
             pygame.draw.circle(self.WIN, self.COLORS["RED"], self.loc4, self.rad)
+            
+        # draw the labels
+        self.WIN.blit(self.labels[0], (self.loc1[0] + 50, self.loc1[1] - (self.rad/2)))
+        self.WIN.blit(self.labels[1], (self.loc2[0] + 50, self.loc2[1] - (self.rad/2)))
+        self.WIN.blit(self.labels[2], (self.loc3[0] + 50, self.loc3[1] - (self.rad/2)))
+        self.WIN.blit(self.labels[3], (self.loc4[0] + 50, self.loc4[1] - (self.rad/2)))
 
     def setup_setting_buttons(self):
         """

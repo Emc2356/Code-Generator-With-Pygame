@@ -57,7 +57,7 @@ class Window_Buttons:
 
     def setup_setting_buttons(self):
         """
-        sets up the buttons for the settings that are hooked up to the code generator class at Parts/Code_Generator.Code_Generator
+        sets up the buttons for the settings that are hooked up to the code generator class at Classes/Code_Generator.Code_Generator
         :return: None
         """
         self.loc1 = (self.WIDTH/5 - self.WIDTH/8, 125)

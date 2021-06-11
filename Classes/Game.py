@@ -1,8 +1,8 @@
-from Parts.Code_Generator import Code_Generator as CG
-from Parts.GUI import GUI
-from Parts.Bar import Bar
-from Parts.Window_Buttons import Window_Buttons
-from Parts.Button import Button
+from Classes.Code_Generator import Code_Generator as CG
+from Classes.GUI import GUI
+from Classes.Bar import Bar
+from Classes.Window_Buttons import Window_Buttons
+from Classes.Button import Button
 import pygame
 import pyperclip as pc
 

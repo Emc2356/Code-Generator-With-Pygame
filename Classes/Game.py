@@ -13,7 +13,7 @@ pygame.font.init()
 
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Win_Buttons: Window_Buttons,
-                 Cg: CG, copy_button: Button, clock: pygame.time.Clock, FPS: int):
+                 Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int):
         """
         Parameters:
          ----------------------
@@ -38,6 +38,7 @@ class Game:
         self.Win_Buttons = Win_Buttons
         self.Cg = Cg
         self.copy_button = copy_button
+        self.reg_button = reg_button
         self.clock = clock
         self.FPS = FPS
         self.key_num = {
@@ -86,6 +87,7 @@ class Game:
         self.Gui.draw()
         self.Win_Buttons.draw()
         self.copy_button.draw()
+        self.reg_button.draw()
         self.bar.draw()
         pygame.display.update()
 

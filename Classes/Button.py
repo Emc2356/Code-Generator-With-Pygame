@@ -2,14 +2,16 @@ import pygame
 
 
 class Button:
-    def __init__(self, color, x, y, WIDTH, HEIGHT, WIN, text=''):
+    def __init__(self, color, x, y, WIDTH, HEIGHT, WIN, text_color, text='', font_size: int=60):
         self.color = color
         self.x = x
         self.y = y
         self.width = WIDTH
         self.height = HEIGHT
+        self.text_color = text_color
         self.text = text
         self.WIN = WIN
+        self.font_size = font_size
 
     def draw(self, outline=None):
         # Call this method to draw the button on the screen
@@ -19,8 +21,8 @@ class Button:
         pygame.draw.rect(self.WIN, self.color, (self.x, self.y, self.width, self.height), 0)
 
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 60)
-            text = font.render(self.text, 1, (0, 0, 0))
+            font = pygame.font.SysFont('comicsans', self.font_size)
+            text = font.render(self.text, 1, self.text_color)
             self.WIN.blit(text, (
                 self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 

@@ -95,6 +95,8 @@ class Code_Generator:
             to_chose += self.special_char
 
         self.password = ""
+        if not to_chose:
+            self.password = ""
+            return None
         for i in range(self.amount):
             self.password += chr(random.choice(to_chose))
-        # print(password)

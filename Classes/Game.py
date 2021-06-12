@@ -116,7 +116,9 @@ class Game:
         """
         self.Win_Buttons.clicked(pygame.mouse.get_pos())
         if self.copy_button.is_over(pygame.mouse.get_pos()):
-            self.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+            self.copy(self.Cg.password)
+        if self.reg_button.is_over(pygame.mouse.get_pos()):
+            self.Cg.get_code()
 
     def keyboard_events(self, event):
         """
@@ -126,8 +128,33 @@ class Game:
         """
         self.bar.events(event)
 
+    def hook(self):
+        """
+        hooks the GUI with the algorithm for the code generation
+        :return: None
+        """
+
+        # hooks the self.bar.text with the self.Cg.amount
+        try:
+            self.Cg.amount = int(self.bar.text)
+        except ValueError:  # it cant convert a empty string to a int so it throws a error and we need to catch it so the program doesnt crash
+            pass
+        except Exception as e:  # catch any unexpected exceptions
+            print(f"""[EXCEPTION] {e} | type: {type(e)}""")
+
+        # hooks the sel.Win_Buttons.loc<1-4>pressed to self.Cg.char_<up|down|num|spec>
+        try:
+            self.Cg.char_up = self.Win_Buttons.loc1_pressed
+            self.Cg.char_down = self.Win_Buttons.loc2_pressed
+            self.Cg.char_num = self.Win_Buttons.loc3_pressed
+            self.Cg.char_spec = self.Win_Buttons.loc4_pressed
+        except Exception as e:  # catch any unexpected exceptions
+            print(f"""[EXCEPTION] {e} | type: {type(e)}""")
+
     def run(self):
         while True:
             self.clock.tick(self.FPS)
-            self.draw()
+            self.hook()
             self.events()
+            self.draw()
+

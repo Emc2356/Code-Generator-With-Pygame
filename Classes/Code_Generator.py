@@ -3,6 +3,7 @@ import random
 
 class Code_Generator:
     def __init__(self):
+        self.password = ""
         self.amount = 0
         self.A = 65
         self.chars_up = [x + self.A for x in range(26)]
@@ -93,7 +94,7 @@ class Code_Generator:
         if self.char_spec:
             to_chose += self.special_char
 
-        password = ""
+        self.password = ""
         for i in range(self.amount):
-            password += chr(random.choice(to_chose))
-        print(password)
+            self.password += chr(random.choice(to_chose))
+        # print(password)

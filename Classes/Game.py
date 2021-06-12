@@ -1,6 +1,6 @@
 from Classes.Code_Generator import Code_Generator as CG
 from Classes.GUI import GUI
-from Classes.Bar import Bar
+from Classes.User_Input import User_Input
 from Classes.Window_Buttons import Window_Buttons
 from Classes.Button import Button
 import pygame
@@ -12,7 +12,7 @@ pygame.font.init()
 
 
 class Game:
-    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: Bar, Gui: GUI, Win_Buttons: Window_Buttons,
+    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Win_Buttons: Window_Buttons,
                  Cg: CG, copy_button: Button, clock: pygame.time.Clock, FPS: int):
         """
         Parameters:

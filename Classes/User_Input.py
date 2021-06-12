@@ -1,7 +1,7 @@
 import pygame
 
 
-class Bar:
+class User_Input:
     def __init__(self, WIDTH, HEIGHT, x, y, width, height, color, WIN, font_size):
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT

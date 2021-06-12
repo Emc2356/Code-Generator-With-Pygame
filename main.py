@@ -3,7 +3,7 @@ from Classes.Window_Buttons import Window_Buttons
 from Classes.Button import Button
 from Classes.Game import Game
 from Classes.GUI import GUI
-from Classes.Bar import Bar
+from Classes.User_Input import User_Input
 import pyperclip as pc
 import pygame
 
@@ -30,7 +30,7 @@ GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 Cg = CG()
 COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN, text="click to copy", color=COLORS["BLUE"])
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
-bar = Bar(WIDTH, HEIGHT, WIDTH/2 - 150/2, 20, 150, 50, COLORS["BLACK"], WIN, 50)
+bar = User_Input(WIDTH, HEIGHT, WIDTH/2 - 150/2, 20, 150, 50, COLORS["BLACK"], WIN, 50)
 clock = pygame.time.Clock()
 FPS = 10
 

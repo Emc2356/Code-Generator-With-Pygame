@@ -112,6 +112,7 @@ class Game:
         :param event: pygame.Event
         :return: None
         """
+        self.Win_Buttons.clicked(pygame.mouse.get_pos())
         if self.copy_button.is_over(pygame.mouse.get_pos()):
             self.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 

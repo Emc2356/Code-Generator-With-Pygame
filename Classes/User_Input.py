@@ -87,55 +87,6 @@ class User_Input:
         """
         return self.height
 
-    def check_for_input(self):
-        """
-        it checks if the user typed anything in the bar
-        :return:
-        """
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_0]:
-            return 0
-        elif keys[pygame.K_1]:
-            return 1
-        elif keys[pygame.K_2]:
-            return 2
-        elif keys[pygame.K_3]:
-            return 3
-        elif keys[pygame.K_4]:
-            return 4
-        elif keys[pygame.K_5]:
-            return 5
-        elif keys[pygame.K_6]:
-            return 6
-        elif keys[pygame.K_7]:
-            return 7
-        elif keys[pygame.K_8]:
-            return 8
-        elif keys[pygame.K_9]:
-            return 9
-        elif keys[pygame.K_KP0]:
-            return 0
-        elif keys[pygame.K_KP1]:
-            return 1
-        elif keys[pygame.K_KP2]:
-            return 2
-        elif keys[pygame.K_KP3]:
-            return 3
-        elif keys[pygame.K_KP4]:
-            return 4
-        elif keys[pygame.K_KP5]:
-            return 5
-        elif keys[pygame.K_KP6]:
-            return 6
-        elif keys[pygame.K_KP7]:
-            return 7
-        elif keys[pygame.K_KP8]:
-            return 8
-        elif keys[pygame.K_KP9]:
-            return 9
-        else:
-            return False
-
     def insert_letter(self, ltr):
         """
         inserts the letter at the end of the text

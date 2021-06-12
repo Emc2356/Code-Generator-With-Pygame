@@ -171,5 +171,10 @@ class User_Input:
         self.base_clr = color
 
     def events(self, event):
+        """
+        pygame events that are used by this class
+        :param event: pygame.Event
+        :return: None
+        """
         if event.type == pygame.K_BACKSPACE:
             self.delete_last()

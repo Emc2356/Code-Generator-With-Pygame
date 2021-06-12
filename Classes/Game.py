@@ -16,7 +16,6 @@ class Game:
                  Cg: CG, copy_button: Button, clock: pygame.time.Clock, FPS: int):
         """
         Parameters:
-         ----------------------
 
          WIN: pygame.Surface
          WIDTH: int
@@ -40,32 +39,6 @@ class Game:
         self.copy_button = copy_button
         self.clock = clock
         self.FPS = FPS
-        self.key_num = {
-            "normal": {
-                       0: 48,
-                       1: 49,
-                       2: 50,
-                       3: 51,
-                       4: 52,
-                       5: 53,
-                       6: 54,
-                       7: 55,
-                       8: 56,
-                       9: 57
-                       },
-            "num_pad": {
-                        0: 1073741922,
-                        1: 1073741913,
-                        2: 1073741914,
-                        3: 1073741915,
-                        4: 1073741916,
-                        5: 1073741917,
-                        6: 1073741918,
-                        7: 1073741919,
-                        8: 1073741920,
-                        9: 1073741921
-                        }
-        }
 
         self.Gui.set_window(TITLE="Password Manager")
         self.Win_Buttons.setup_setting_buttons()
@@ -101,27 +74,8 @@ class Game:
                 quit(-1)
             # check if the user presses the copy_button to copy the code
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.click_events(event)
-            # checks if the user pressed any buttons
-            if event.type == pygame.KEYDOWN:
-                self.keyboard_events(event)
-
-    def click_events(self, event):
-        """
-        click related events
-        :param event: pygame.Event
-        :return: None
-        """
-        if self.copy_button.is_over(pygame.mouse.get_pos()):
-            self.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-
-    def keyboard_events(self, event):
-        """
-        click related events
-        :param event: pygame.Event
-        :return: None
-        """
-        self.bar.events(event)
+                if self.copy_button.is_over(pygame.mouse.get_pos()):
+                    self.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def run(self):
         while True:

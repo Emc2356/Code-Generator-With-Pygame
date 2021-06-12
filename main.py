@@ -30,9 +30,9 @@ GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 Cg = CG()
 COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN, text="click to copy", color=COLORS["BLUE"])
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
-bar = User_Input(WIDTH, HEIGHT, WIDTH/2 - 150/2, 20, 150, 50, COLORS["BLACK"], WIN, 50)
+bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)
 clock = pygame.time.Clock()
-FPS = 10
+FPS = 60
 
 
 game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Win_Buttons=WD, Cg=Cg, copy_button=COPY_BUTTON, clock=clock, FPS=FPS)

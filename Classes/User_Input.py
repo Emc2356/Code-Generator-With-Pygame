@@ -32,6 +32,32 @@ class User_Input:
         self.font = pygame.font.SysFont("comicsans", self.font_size)
         self.text = ""
         self.antialias = True
+        self.key_num = {
+            "normal": {
+                       0: 48,
+                       1: 49,
+                       2: 50,
+                       3: 51,
+                       4: 52,
+                       5: 53,
+                       6: 54,
+                       7: 55,
+                       8: 56,
+                       9: 57
+                       },
+            "num_pad": {
+                        0: 1073741922,
+                        1: 1073741913,
+                        2: 1073741914,
+                        3: 1073741915,
+                        4: 1073741916,
+                        5: 1073741917,
+                        6: 1073741918,
+                        7: 1073741919,
+                        8: 1073741920,
+                        9: 1073741921
+                        }
+        }
 
     def draw(self):
         """
@@ -118,12 +144,15 @@ class User_Input:
         """
         self.text += ltr
 
-    def write(self, character):
+    def write(self, character, MAX: int=4):
         """
         writes a character to the field
         :param character: any
+        :param MAX: int
         :return: None
         """
+        if len(self.text) >= MAX:
+            return
         self.text += character
 
     def clear(self):
@@ -172,9 +201,22 @@ class User_Input:
 
     def events(self, event):
         """
-        pygame events that are used by this class
         :param event: pygame.Event
         :return: None
         """
-        if event.type == pygame.K_BACKSPACE:
+        # number input
+        if event.key in self.key_num["normal"].values() or event.key in self.key_num["num_pad"].values():
+            # check for normal 0-9 values
+            if event.key in self.key_num["normal"].values():
+                for char_value in list(self.key_num["normal"].values()):
+                    if char_value == event.key:
+                        self.write(str(list(self.key_num["normal"].values()).index(char_value)))
+            # check for numpad input 0-9
+            elif event.key in self.key_num["num_pad"].values():
+                for char_value in list(self.key_num["num_pad"].values()):
+                    if char_value == event.key:
+                        self.write(str(list(self.key_num["num_pad"].values()).index(char_value)))
+        # delete last character from the text
+        if event.key == pygame.K_BACKSPACE:
+            """check if the user wants to delete the last item from a list"""
             self.delete_last()

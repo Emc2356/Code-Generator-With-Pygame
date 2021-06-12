@@ -78,8 +78,6 @@ class Game:
                     self.copy("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def run(self):
-        run = True
-
         while True:
             self.clock.tick(self.FPS)
             self.draw()

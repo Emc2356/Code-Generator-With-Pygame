@@ -32,7 +32,7 @@ COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = Bar(WIDTH, HEIGHT, WIDTH/2 - 150/2, 20, 150, 50, COLORS["BLACK"], WIN, 50)
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 10
 
 
 game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Win_Buttons=WD, Cg=Cg, copy_button=COPY_BUTTON, clock=clock, FPS=FPS)

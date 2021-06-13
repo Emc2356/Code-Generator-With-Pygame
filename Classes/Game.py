@@ -91,6 +91,24 @@ class Game:
         self.bar.draw()
         pygame.display.update()
 
+    def over(self):
+        """
+        checks if the mouse is over the copy or the generate button
+        :return: None
+        """
+
+        # the copy button
+        if self.copy_button.is_over(pygame.mouse.get_pos()):
+            self.copy_button.color = (50, 0, 255)
+        else:
+            self.copy_button.color = (0, 0, 255)
+
+        # the regen button
+        if self.reg_button.is_over(pygame.mouse.get_pos()):
+            self.reg_button.color = (255, 50, 30)
+        else:
+            self.reg_button.color = (255, 0, 0)
+
     def events(self):
         """
         checks for events
@@ -156,5 +174,6 @@ class Game:
             self.clock.tick(self.FPS)
             self.hook()
             self.events()
+            self.over()
             self.draw()
 

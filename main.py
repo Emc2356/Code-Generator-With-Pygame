@@ -32,6 +32,8 @@ COPY_BUTTON = Button(x=round(WIDTH/2 - 250/2), y=HEIGHT - 70, width=250, height=
                      text="click to copy", text_color=COLORS["BLACK"], color=COLORS["BLUE"])
 REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=40, WIN=WIN,
                     text="click to regenerate the password", text_color=COLORS["GREEN"], color=COLORS["RED"], font_size=30)
+save_button = Button(x=12, y=HEIGHT - 70, width=100, height=50,
+                     WIN=WIN, text="save", text_color=COLORS["BLACK"], color="GREEN", font_size=60)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)
 clock = pygame.time.Clock()
@@ -39,5 +41,5 @@ FPS = 60
 
 
 game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Win_Buttons=WD, Cg=Cg,
-            copy_button=COPY_BUTTON, reg_button=REG_BUTTON, clock=clock, FPS=FPS)
+            copy_button=COPY_BUTTON, reg_button=REG_BUTTON, clock=clock, FPS=FPS, save_button=save_button)
 game.run()

@@ -63,10 +63,10 @@ class Window_Buttons:
         sets up the buttons for the settings that are hooked up to the code generator class at Classes/Code_Generator.Code_Generator
         :return: None
         """
-        self.loc1 = (self.WIDTH / 5 - self.WIDTH / 8, 125)
-        self.loc2 = (self.WIDTH / 5 - self.WIDTH / 8, 200)
-        self.loc3 = (self.WIDTH / 5 - self.WIDTH / 8, 275)
-        self.loc4 = (self.WIDTH / 5 - self.WIDTH / 8, 350)
+        self.loc1 = (self.WIDTH / 5 - self.WIDTH / 8, 100)
+        self.loc2 = (self.WIDTH / 5 - self.WIDTH / 8, 150 + 1)
+        self.loc3 = (self.WIDTH / 5 - self.WIDTH / 8, 200 + 2)
+        self.loc4 = (self.WIDTH / 5 - self.WIDTH / 8, 250 + 3)
 
     def clicked(self, m_pos: tuple):
         """

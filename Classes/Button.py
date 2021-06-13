@@ -2,12 +2,13 @@ import pygame
 
 
 class Button:
-    def __init__(self, color, x, y, WIDTH, HEIGHT, WIN, text_color, text='', font_size: int=60):
+    def __init__(self, color, x: int, y: int, width: int, height: int, WIN: pygame.Surface,
+                 text_color: tuple, text='', font_size: int=60):
         self.color = color
         self.x = x
         self.y = y
-        self.width = WIDTH
-        self.height = HEIGHT
+        self.width = width
+        self.height = height
         self.text_color = text_color
         self.text = text
         self.WIN = WIN
@@ -39,3 +40,10 @@ class Button:
 
     def get_height(self):
         return self.height
+
+    def get_pos(self):
+        """
+        it returns the poss of the button
+        :return: tuple(x, y)
+        """
+        return self.x, self.y

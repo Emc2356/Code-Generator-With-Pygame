@@ -28,9 +28,9 @@ COLORS = {
 # setup the classes instances
 Cg = CG()
 GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
-COPY_BUTTON = Button(x=WIDTH/2 - 250/2, y=HEIGHT - 70, WIDTH=250, HEIGHT=50, WIN=WIN,
+COPY_BUTTON = Button(x=round(WIDTH/2 - 250/2), y=HEIGHT - 70, width=250, height=50, WIN=WIN,
                      text="click to copy", text_color=COLORS["BLACK"], color=COLORS["BLUE"])
-REG_BUTTON = Button(x=WIDTH/2 - 340/2, y=HEIGHT - 115, WIDTH=340, HEIGHT=40, WIN=WIN,
+REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=40, WIN=WIN,
                     text="click to regenerate the password", text_color=COLORS["GREEN"], color=COLORS["RED"], font_size=30)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)

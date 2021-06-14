@@ -44,6 +44,8 @@ class Game:
         self.buttons = [copy_button, reg_button, save_button]
         self.clock = clock
         self.FPS = FPS
+        self.save_input_field = User_Input(self.WIDTH, self.HEIGHT, 0, 50, self.WIDTH, 50,
+                                           (0, 0, 0), self.WIN, (255, 255, 255), 60)
         self.key_num = {
             "normal": {
                        0: 48,
@@ -112,22 +114,40 @@ class Game:
         else:
             self.reg_button.color = (255, 0, 0)
 
-    def events(self):
+        # the save button
+        if self.save_button.is_over(pygame.mouse.get_pos()):
+            self.save_button.color = (80, 255, 30)
+        else:
+            self.save_button.color = (0, 255, 0)
+
+    def events(self, save=False):
         """
         checks for events
         :return: None
         """
-        for event in pygame.event.get():
-            # checks if the user wants to quit
-            if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
-                pygame.quit()
-                quit(-1)
-            # check if the user presses the copy_button to copy the code
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                self.click_events(event)
-            # checks if the user pressed any buttons
-            if event.type == pygame.KEYDOWN:
-                self.keyboard_events(event)
+        if not save:
+            for event in pygame.event.get():
+                # checks if the user wants to quit
+                if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                    pygame.quit()
+                    quit(-1)
+                # check if the user presses the copy_button to copy the code
+                if event.type == pygame.MOUSEBUTTONDOWN and not event.type == pygame.MOUSEWHEEL:
+                    self.click_events(event)
+                # checks if the user pressed any buttons
+                if event.type == pygame.KEYDOWN:
+                    self.keyboard_events(event)
+        elif save:
+            for event in pygame.event.get():
+                # checks if the user wants to quit
+                if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                    pygame.quit()
+                    quit(-1)
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        self.save_input_field.delete_last()
+                    else:
+                        self.save_input_field.write(event.unicode, MAX=100)
 
     def click_events(self, event):
         """
@@ -140,6 +160,8 @@ class Game:
             self.copy(self.Cg.password)
         if self.reg_button.is_over(pygame.mouse.get_pos()):
             self.Cg.get_code()
+        if self.save_button.is_over(pygame.mouse.get_pos()):
+            self.save()
 
     def keyboard_events(self, event):
         """
@@ -171,6 +193,19 @@ class Game:
             self.Cg.char_spec = self.Win_Buttons.loc4_pressed
         except Exception as e:  # catch any unexpected exceptions
             print(f"""[EXCEPTION] {e} | type: {type(e)}""")
+
+    def save(self):
+        """
+        saves the code that is currently generated
+        :return: None
+        """
+        while True:
+            self.events(save=True)
+            self.WIN.fill((255, 255, 255))
+            self.save_input_field.draw()
+            pygame.display.update()
+
+
 
     def run(self):
         while True:

@@ -3,7 +3,7 @@ import pygame
 
 class User_Input:
     def __init__(self, WIDTH: int, HEIGHT: int, x: int, y: int, width: int, height: int,
-                 base_color: tuple, WIN: pygame.Surface, text_color: tuple, font_size: int):
+                 base_color: tuple[int, int, int], WIN: pygame.Surface, text_color: tuple[int, int, int], font_size: int):
         """
         Parameters
         ----------
@@ -66,7 +66,7 @@ class User_Input:
         """
         # pygame.draw.rect(pygame.Surface, color: tuple, (x, y, width, height))
         pygame.draw.rect(self.WIN, self.base_clr, (self.x, self.y, self.width, self.height))
-        text = self.font.render(str(self.text), 1, self.text_clr)
+        text = self.font.render(str(self.text), True, self.text_clr)
         self.WIN.blit(text, (
                             self.WIDTH/2 - text.get_width()/2,
                             self.y/2 + text.get_height()/2

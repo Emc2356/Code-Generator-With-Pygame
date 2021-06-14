@@ -22,7 +22,8 @@ COLORS = {
     "BLACK": (0, 0, 0),
     "RED": (255, 0, 0),
     "GREEN": (0, 255, 0),
-    "BLUE": (0, 0, 255)
+    "BLUE": (0, 0, 255),
+    "GRAY-BLACK": (30, 30, 30)
 }
 
 # setup the classes instances
@@ -31,7 +32,7 @@ GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 COPY_BUTTON = Button(x=round(WIDTH/2 - 250/2), y=HEIGHT - 70, width=250, height=50, WIN=WIN,
                      text="click to copy", text_color=COLORS["BLACK"], color=COLORS["BLUE"])
 REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=40, WIN=WIN,
-                    text="click to regenerate the password", text_color=COLORS["GREEN"], color=COLORS["RED"], font_size=30)
+                    text="click to regenerate the password", text_color=COLORS["BLACK"], color=COLORS["RED"], font_size=30)
 save_button = Button(x=12, y=HEIGHT - 70, width=100, height=50,
                      WIN=WIN, text="save", text_color=COLORS["BLACK"], color="GREEN", font_size=60)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)

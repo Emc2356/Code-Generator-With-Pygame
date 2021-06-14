@@ -57,10 +57,13 @@ class Game:
             "num_pad": {0: 1073741922, 1: 1073741913, 2: 1073741914, 3: 1073741915, 4: 1073741916,
                         5: 1073741917, 6: 1073741918, 7: 1073741919, 8: 1073741920, 9: 1073741921}
         }
+
         self.load_img = pygame.image.load
         self.mode_imgs = cycle([self.load_img("assets/dark-32.png"), self.load_img("assets/bright-32.png")])
         self.mode_img = next(self.mode_imgs)
         self.mode_rect = pygame.Rect((self.WIDTH - 36, 5, 32, 32))
+        self.base_colors = cycle([(255, 255, 255), (30, 30, 30)])
+        self.cur_base_color = next(self.base_colors)
 
         self.Win_Buttons.setup_setting_buttons()
 
@@ -191,6 +194,8 @@ class Game:
         # universal events
         if self.mode_rect.collidepoint(event.pos):
             self.mode_img = next(self.mode_imgs)
+            self.cur_base_color = next(self.base_colors)
+            self.Gui.BASE_COLOR = self.cur_base_color
 
     def keyboard_events_handler(self, event, save=False):
         """

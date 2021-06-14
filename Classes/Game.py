@@ -133,10 +133,10 @@ class Game:
                     quit(-1)
                 # check if the user presses the copy_button to copy the code
                 if event.type == pygame.MOUSEBUTTONDOWN and not event.type == pygame.MOUSEWHEEL:
-                    self.click_events(event)
+                    self.click_event_handler(event)
                 # checks if the user pressed any buttons
                 if event.type == pygame.KEYDOWN:
-                    self.keyboard_events(event)
+                    self.keyboard_events_handler(event)
         elif save:
             for event in pygame.event.get():
                 # checks if the user wants to quit
@@ -149,7 +149,7 @@ class Game:
                     else:
                         self.save_input_field.write(event.unicode, MAX=100)
 
-    def click_events(self, event):
+    def click_event_handler(self, event):
         """
         click related events
         :param event: pygame.Event
@@ -163,13 +163,13 @@ class Game:
         if self.save_button.is_over(pygame.mouse.get_pos()):
             self.save()
 
-    def keyboard_events(self, event):
+    def keyboard_events_handler(self, event):
         """
         click related events
         :param event: pygame.Event
         :return: None
         """
-        self.bar.events(event)
+        self.bar.event_handler(event)
 
     def hook(self):
         """

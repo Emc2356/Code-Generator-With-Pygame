@@ -150,7 +150,7 @@ class User_Input:
         """
         self.base_clr = color
 
-    def events(self, event):
+    def event_handler(self, event):
         """
         :param event: pygame.Event
         :return: None

@@ -120,7 +120,7 @@ class Game:
         else:
             self.save_button.color = (0, 255, 0)
 
-    def events(self, save=False):
+    def event_handler(self, save=False):
         """
         checks for events
         :return: None
@@ -200,18 +200,16 @@ class Game:
         :return: None
         """
         while True:
-            self.events(save=True)
+            self.event_handler(save=True)
             self.WIN.fill((255, 255, 255))
             self.save_input_field.draw()
             pygame.display.update()
-
-
 
     def run(self):
         while True:
             self.clock.tick(self.FPS)
             self.hook()
-            self.events()
+            self.event_handler()
             self.over()
             self.draw()
 

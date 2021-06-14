@@ -52,30 +52,9 @@ class Game:
         self.save_back_button = save_back_button
         self.save_save_button = save_save_button
         self.key_num = {
-            "normal": {
-                       0: 48,
-                       1: 49,
-                       2: 50,
-                       3: 51,
-                       4: 52,
-                       5: 53,
-                       6: 54,
-                       7: 55,
-                       8: 56,
-                       9: 57
-                       },
-            "num_pad": {
-                        0: 1073741922,
-                        1: 1073741913,
-                        2: 1073741914,
-                        3: 1073741915,
-                        4: 1073741916,
-                        5: 1073741917,
-                        6: 1073741918,
-                        7: 1073741919,
-                        8: 1073741920,
-                        9: 1073741921
-                        }
+            "normal": {0: 48, 1: 49, 2: 50, 3: 51, 4: 52, 5: 53, 6: 54, 7: 55, 8: 56, 9: 57},
+            "num_pad": {0: 1073741922, 1: 1073741913, 2: 1073741914, 3: 1073741915, 4: 1073741916,
+                        5: 1073741917, 6: 1073741918, 7: 1073741919, 8: 1073741920, 9: 1073741921}
         }
 
         self.Win_Buttons.setup_setting_buttons()
@@ -132,7 +111,6 @@ class Game:
                 self.save_button.color = (80, 255, 30)
             else:
                 self.save_button.color = (0, 255, 0)
-
         else:
             # save back button
             if self.save_back_button.is_over(pygame.mouse.get_pos()):
@@ -249,6 +227,10 @@ class Game:
             self.draw(save=True)
 
     def run(self):
+        """
+        the main method to run the game
+        :return:
+        """
         self.Gui.set_window(TITLE="Password Manager (create password)")
         while True:
             self.clock.tick(self.FPS)

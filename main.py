@@ -4,7 +4,6 @@ from Classes.Button import Button
 from Classes.Game import Game
 from Classes.GUI import GUI
 from Classes.User_Input import User_Input
-import pyperclip as pc
 import pygame
 
 

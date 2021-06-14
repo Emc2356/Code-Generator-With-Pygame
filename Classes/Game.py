@@ -85,48 +85,54 @@ class Game:
         """
         pc.copy(copy)
 
-    def draw(self):
+    def draw(self, save=False):
         """
         draws everything that it can
+        :param save: bool
         :return: None
         """
-        # self.Cg is just the logic for the code generator and not the actual GUI that is used
-        self.Gui.draw()
-        self.Win_Buttons.draw()
-        for button in self.buttons:
-            button.draw()
-        self.bar.draw()
-        pygame.display.update()
+        if not save:
+            # self.Cg is just the logic for the code generator and not the actual GUI that is used
+            self.Gui.draw()
+            self.Win_Buttons.draw()
+            for button in self.buttons:
+                button.draw()
+            self.bar.draw()
+            pygame.display.update()
+        else:
+            pass
 
-    def over(self):
+    def over(self, save=False):
         """
         checks if the mouse is over the copy or the generate button
+        :param save: bool
         :return: None
         """
+        if not save:
+            # the copy button
+            if self.copy_button.is_over(pygame.mouse.get_pos()):
+                self.copy_button.color = (50, 0, 255)
+            else:
+                self.copy_button.color = (0, 0, 255)
 
-        # the copy button
-        if self.copy_button.is_over(pygame.mouse.get_pos()):
-            self.copy_button.color = (50, 0, 255)
-        else:
-            self.copy_button.color = (0, 0, 255)
+            # the regen button
+            if self.reg_button.is_over(pygame.mouse.get_pos()):
+                self.reg_button.color = (255, 50, 30)
+            else:
+                self.reg_button.color = (255, 0, 0)
 
-        # the regen button
-        if self.reg_button.is_over(pygame.mouse.get_pos()):
-            self.reg_button.color = (255, 50, 30)
-        else:
-            self.reg_button.color = (255, 0, 0)
+            # the save button
+            if self.save_button.is_over(pygame.mouse.get_pos()):
+                self.save_button.color = (80, 255, 30)
+            else:
+                self.save_button.color = (0, 255, 0)
 
-        # the save button
-        if self.save_button.is_over(pygame.mouse.get_pos()):
-            self.save_button.color = (80, 255, 30)
         else:
-            self.save_button.color = (0, 255, 0)
-
-        # save back button
-        if self.save_back_button.is_over(pygame.mouse.get_pos()):
-            self.save_back_button.color = (255, 50, 39)
-        else:
-            self.save_back_button.color = (255, 0, 0)
+            # save back button
+            if self.save_back_button.is_over(pygame.mouse.get_pos()):
+                self.save_back_button.color = (255, 50, 39)
+            else:
+                self.save_back_button.color = (255, 0, 0)
 
     def event_handler(self, save=False):
         """
@@ -160,27 +166,35 @@ class Game:
                     if self.save_back_button.is_over(pygame.mouse.get_pos()):
                         self.run()
 
-    def click_event_handler(self, event):
+    def click_event_handler(self, event, save=False):
         """
         click related events
         :param event: pygame.Event
+        :param save: bool
         :return: None
         """
-        self.Win_Buttons.clicked(pygame.mouse.get_pos())
-        if self.copy_button.is_over(pygame.mouse.get_pos()):
-            self.copy(self.Cg.password)
-        if self.reg_button.is_over(pygame.mouse.get_pos()):
-            self.Cg.get_code()
-        if self.save_button.is_over(pygame.mouse.get_pos()):
-            self.save()
+        if not save:
+            self.Win_Buttons.clicked(pygame.mouse.get_pos())
+            if self.copy_button.is_over(pygame.mouse.get_pos()):
+                self.copy(self.Cg.password)
+            if self.reg_button.is_over(pygame.mouse.get_pos()):
+                self.Cg.get_code()
+            if self.save_button.is_over(pygame.mouse.get_pos()):
+                self.save()
+        else:
+            pass
 
-    def keyboard_events_handler(self, event):
+    def keyboard_events_handler(self, event, save=False):
         """
         click related events
         :param event: pygame.Event
+        :param save: bool
         :return: None
         """
-        self.bar.event_handler(event)
+        if not save:
+            self.bar.event_handler(event)
+        else:
+            pass
 
     def hook(self):
         """

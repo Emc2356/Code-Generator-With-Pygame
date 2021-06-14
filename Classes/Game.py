@@ -1,11 +1,12 @@
 from Classes import Code_Generator as CG
 from Classes import Window_Buttons
 from Classes import User_Input
+from itertools import cycle
 from Classes import Button
 from Classes import GUI
 import pyperclip as pc
 import pygame
-from itertools import cycle
+import json
 
 
 pygame.init()
@@ -187,9 +188,12 @@ class Game:
             # it checks if the user pressed the save button in the save menu
             if self.save_save_button.is_over(pygame.mouse.get_pos()):
                 if not self.save_input_field.text == "" or " " or self.Cg.password == "":
-                    with open(f"./Codes/{self.save_input_field.text}.txt", "w+") as f:
+                    with open(f"./assets/codes.json", "r") as f:
+                        data = json.loads(f.read())
+                    with open(f"./assets/codes.json", "w") as f:
+                        data[self.save_input_field.text] = self.Cg.password
                         f.truncate(0)
-                        f.write(f"""{self.save_input_field.text} |-|-| {self.Cg.password}""")
+                        json.dump(data, f, indent=4)
 
         # universal events
         if self.mode_rect.collidepoint(event.pos):

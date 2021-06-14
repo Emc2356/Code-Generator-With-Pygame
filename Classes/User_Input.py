@@ -152,6 +152,7 @@ class User_Input:
 
     def event_handler(self, event):
         """
+        used only with numbers
         :param event: pygame.Event
         :return: None
         """
@@ -171,3 +172,32 @@ class User_Input:
         if event.key == pygame.K_BACKSPACE:
             """check if the user wants to delete the last item from a list"""
             self.delete_last()
+
+
+if __name__ == '__main__':
+    from pygame.locals import *
+    pygame.init()
+    pygame.font.init()
+
+    WIDTH, HEIGHT = 500, 500
+    win = pygame.display.set_mode((WIDTH, HEIGHT))
+
+    user_input = User_Input(WIDTH, HEIGHT, 50, 50, 400, 50, (70, 70, 70), win, (255, 255, 255), 60)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT or pygame.key.get_pressed()[K_ESCAPE]:
+                pygame.quit()
+                quit(-1)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == K_BACKSPACE or pygame.key.get_pressed()[K_BACKSPACE]:
+                    user_input.delete_last()
+                elif event.key == K_RETURN:
+                    print(user_input.text)
+                    user_input.clear()
+                else:
+                    user_input.write(event.unicode, MAX=1000)
+
+        win.fill((30, 30, 30))
+        user_input.draw()
+        pygame.display.update()

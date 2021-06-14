@@ -242,3 +242,8 @@ class Game:
             self.over()
             self.draw()
 
+
+if __name__ == '__main__':
+    print("this is a class designed to be run from another file.")
+    pygame.quit()
+    quit()

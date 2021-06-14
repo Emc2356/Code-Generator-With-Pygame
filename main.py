@@ -1,9 +1,9 @@
-from Classes.Code_Generator import Code_Generator as CG
-from Classes.Window_Buttons import Window_Buttons
-from Classes.Button import Button
-from Classes.Game import Game
-from Classes.GUI import GUI
-from Classes.User_Input import User_Input
+from Classes import Code_Generator as CG
+from Classes import Window_Buttons
+from Classes import User_Input
+from Classes import Button
+from Classes import Game
+from Classes import GUI
 import pygame
 
 

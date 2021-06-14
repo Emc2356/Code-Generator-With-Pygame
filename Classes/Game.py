@@ -1,10 +1,10 @@
-from Classes.Code_Generator import Code_Generator as CG
-from Classes.GUI import GUI
-from Classes.User_Input import User_Input
-from Classes.Window_Buttons import Window_Buttons
-from Classes.Button import Button
-import pygame
+from Classes import Code_Generator as CG
+from Classes import Window_Buttons
+from Classes import User_Input
+from Classes import Button
+from Classes import GUI
 import pyperclip as pc
+import pygame
 
 
 pygame.init()

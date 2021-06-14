@@ -100,7 +100,9 @@ class Game:
             self.bar.draw()
             pygame.display.update()
         else:
-            pass
+            self.WIN.fill((255, 255, 255))
+            self.save_input_field.draw()
+            self.save_back_button.draw()
 
     def over(self, save=False):
         """
@@ -226,11 +228,9 @@ class Game:
         """
         self.Gui.set_window(TITLE="Password Manager (save password)")
         while True:
+            self.over(save=True)
             self.event_handler(save=True)
-            self.over()
-            self.WIN.fill((255, 255, 255))
-            self.save_input_field.draw()
-            self.save_back_button.draw()
+            self.draw(save=True)
             pygame.display.update()
 
     def run(self):

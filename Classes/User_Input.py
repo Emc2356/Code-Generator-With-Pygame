@@ -156,7 +156,7 @@ class User_Input:
         :return: None
         """
         # number input
-        if event.key in self.key_num["normal"].values() or event.key in self.key_num["num_pad"].values():
+        if event.key in self.key_num["normal"].values() or self.key_num["num_pad"].values():
             # check for normal 0-9 values
             if event.key in self.key_num["normal"].values():
                 for char_value in list(self.key_num["normal"].values()):

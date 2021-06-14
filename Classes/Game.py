@@ -13,7 +13,8 @@ pygame.font.init()
 
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Win_Buttons: Window_Buttons,
-                 Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button):
+                 Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
+                 save_input_field: User_Input, save_back_button: Button):
         """
         Parameters:
          ----------------------
@@ -29,6 +30,8 @@ class Game:
          clock: pygame.time.Clock
          FPS: int
          save_button: Button
+         save_input_field: User_Input
+         save_back_button: Button
 
         """
         self.WIN = WIN
@@ -44,8 +47,8 @@ class Game:
         self.buttons = [copy_button, reg_button, save_button]
         self.clock = clock
         self.FPS = FPS
-        self.save_input_field = User_Input(self.WIDTH, self.HEIGHT, 0, 50, self.WIDTH, 50,
-                                           (0, 0, 0), self.WIN, (255, 255, 255), 60)
+        self.save_input_field = save_input_field
+        self.save_back_button = save_back_button
         self.key_num = {
             "normal": {
                        0: 48,
@@ -120,6 +123,12 @@ class Game:
         else:
             self.save_button.color = (0, 255, 0)
 
+        # save back button
+        if self.save_back_button.is_over(pygame.mouse.get_pos()):
+            self.save_back_button.color = (255, 50, 39)
+        else:
+            self.save_back_button.color = (255, 0, 0)
+
     def event_handler(self, save=False):
         """
         checks for events
@@ -148,6 +157,9 @@ class Game:
                         self.save_input_field.delete_last()
                     else:
                         self.save_input_field.write(event.unicode, MAX=100)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.save_back_button.is_over(pygame.mouse.get_pos()):
+                        self.run()
 
     def click_event_handler(self, event):
         """
@@ -201,8 +213,10 @@ class Game:
         """
         while True:
             self.event_handler(save=True)
+            self.over()
             self.WIN.fill((255, 255, 255))
             self.save_input_field.draw()
+            self.save_back_button.draw()
             pygame.display.update()
 
     def run(self):

@@ -2,8 +2,8 @@ import pygame
 
 
 class Button:
-    def __init__(self, color, x: int, y: int, width: int, height: int, WIN: pygame.Surface,
-                 text_color: tuple, text='', font_size: int=60):
+    def __init__(self, color: tuple[int, int, int], x: int, y: int, width: int, height: int, WIN: pygame.Surface,
+                 text_color: tuple[int, int, int], text='', font_size: int=60):
         self.color = color
         self.x = x
         self.y = y

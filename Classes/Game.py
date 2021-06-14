@@ -76,7 +76,6 @@ class Game:
                         }
         }
 
-        self.Gui.set_window(TITLE="Password Manager")
         self.Win_Buttons.setup_setting_buttons()
 
     def copy(self, copy):
@@ -211,6 +210,7 @@ class Game:
         saves the code that is currently generated
         :return: None
         """
+        self.Gui.set_window(TITLE="Password Manager (save password)")
         while True:
             self.event_handler(save=True)
             self.over()
@@ -220,6 +220,7 @@ class Game:
             pygame.display.update()
 
     def run(self):
+        self.Gui.set_window(TITLE="Password Manager (create password)")
         while True:
             self.clock.tick(self.FPS)
             self.hook()

@@ -36,7 +36,7 @@ save_button = Button(x=12, y=HEIGHT - 70, width=100, height=50,
                      WIN=WIN, text="save", text_color=COLORS["BLACK"], color=COLORS["GREEN"], font_size=60)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)
-save_input_field = User_Input(WIDTH, HEIGHT, 0, 50, WIDTH, 50, (0, 0, 0), WIN, (255, 255, 255), 60)
+save_input_field = User_Input(WIDTH, HEIGHT, 10, 50, WIDTH - 20, 50, (0, 0, 0), WIN, (255, 255, 255), 60)
 save_back_button = Button(COLORS["RED"], 10, 440, 100, 50, WIN, COLORS["BLACK"], "Go back", font_size=35)
 clock = pygame.time.Clock()
 FPS = 60

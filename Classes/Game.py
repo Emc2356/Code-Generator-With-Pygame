@@ -14,7 +14,7 @@ pygame.font.init()
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Win_Buttons: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
-                 save_input_field: User_Input, save_back_button: Button):
+                 save_input_field: User_Input, save_back_button: Button, save_save_button: Button):
         """
         Parameters:
          ----------------------
@@ -32,6 +32,7 @@ class Game:
          save_button: Button
          save_input_field: User_Input
          save_back_button: Button
+         save_save_button: Button
 
         """
         self.WIN = WIN
@@ -49,6 +50,7 @@ class Game:
         self.FPS = FPS
         self.save_input_field = save_input_field
         self.save_back_button = save_back_button
+        self.save_save_button = save_save_button
         self.key_num = {
             "normal": {
                        0: 48,
@@ -103,6 +105,8 @@ class Game:
             self.WIN.fill((255, 255, 255))
             self.save_input_field.draw()
             self.save_back_button.draw()
+            self.save_save_button.draw()
+            pygame.display.update()
 
     def over(self, save=False):
         """
@@ -136,6 +140,12 @@ class Game:
             else:
                 self.save_back_button.color = (255, 0, 0)
 
+            # the save save button
+            if self.save_save_button.is_over(pygame.mouse.get_pos()):
+                self.save_save_button.color = (80, 255, 30)
+            else:
+                self.save_save_button.color = (0, 255, 0)
+
     def event_handler(self, save=False):
         """
         checks for events
@@ -167,6 +177,7 @@ class Game:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.save_back_button.is_over(pygame.mouse.get_pos()):
                         self.run()
+                    self.click_event_handler(event, save=True)
 
     def click_event_handler(self, event, save=False):
         """
@@ -184,7 +195,12 @@ class Game:
             if self.save_button.is_over(pygame.mouse.get_pos()):
                 self.save()
         else:
-            pass
+            # it checks if the user pressed the save button in the save menu
+            if self.save_save_button.is_over(pygame.mouse.get_pos()):
+                if not self.save_input_field.text == "" or " " or self.Cg.password == "":
+                    with open(f"./Codes/{self.save_input_field.text}.txt", "w+") as f:
+                        f.truncate(0)
+                        f.write(f"""{self.save_input_field.text} |-|-| {self.Cg.password}""")
 
     def keyboard_events_handler(self, event, save=False):
         """
@@ -231,7 +247,6 @@ class Game:
             self.over(save=True)
             self.event_handler(save=True)
             self.draw(save=True)
-            pygame.display.update()
 
     def run(self):
         self.Gui.set_window(TITLE="Password Manager (create password)")

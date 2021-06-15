@@ -146,8 +146,8 @@ class Game:
                 if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
                     pygame.quit()
                     quit(-1)
-                # check if the user presses the copy_button to copy the code
-                if event.type == pygame.MOUSEBUTTONDOWN and not event.type == pygame.MOUSEWHEEL:
+                # check if the user clicked the screen
+                if event.type == pygame.MOUSEBUTTONDOWN:
                     self.click_event_handler(event)
                 # checks if the user pressed any buttons
                 if event.type == pygame.KEYDOWN:

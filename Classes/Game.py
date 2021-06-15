@@ -14,7 +14,7 @@ pygame.font.init()
 
 
 class Game:
-    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Win_Buttons: Window_Buttons,
+    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
                  save_input_field: User_Input, save_back_button: Button, save_save_button: Button):
         """
@@ -26,7 +26,7 @@ class Game:
          HEIGHT: int
          bar: Bar
          Gui: GUI
-         Win_Buttons: Window_Buttons
+         Wb: Window_Buttons
          Cg: CG
          copy_button: Button
          clock: pygame.time.Clock
@@ -42,7 +42,7 @@ class Game:
         self.HEIGHT = HEIGHT
         self.bar = bar
         self.Gui = Gui
-        self.Win_Buttons = Win_Buttons
+        self.Wb = Wb
         self.Cg = Cg
         self.copy_button = copy_button
         self.reg_button = reg_button
@@ -66,7 +66,7 @@ class Game:
         self.base_colors = cycle([(255, 255, 255), (30, 30, 30)])
         self.cur_base_color = next(self.base_colors)
 
-        self.Win_Buttons.setup_setting_buttons()
+        self.Wb.setup_setting_buttons()
 
     def copy(self, copy):
         """
@@ -84,7 +84,7 @@ class Game:
         if not save:
             # self.Cg is just the logic for the code generator and not the actual GUI that is used
             self.Gui.draw()
-            self.Win_Buttons.draw()
+            self.Wb.draw()
             for button in self.buttons:
                 button.draw()
             self.bar.draw()
@@ -177,7 +177,7 @@ class Game:
         :return: None
         """
         if not save:
-            self.Win_Buttons.clicked(pygame.mouse.get_pos())
+            self.Wb.clicked(pygame.mouse.get_pos())
             if self.copy_button.is_over(pygame.mouse.get_pos()):
                 self.copy(self.Cg.password)
             if self.reg_button.is_over(pygame.mouse.get_pos()):
@@ -227,12 +227,12 @@ class Game:
         except Exception as e:  # catch any unexpected exceptions
             print(f"""[EXCEPTION] {e} | type: {type(e)}""")
 
-        # hooks the sel.Win_Buttons.loc<1-4>pressed to self.Cg.char_<up|down|num|spec>
+        # hooks the sel.Wb.loc<1-4>pressed to self.Cg.char_<up|down|num|spec>
         try:
-            self.Cg.char_up = self.Win_Buttons.loc1_pressed
-            self.Cg.char_down = self.Win_Buttons.loc2_pressed
-            self.Cg.char_num = self.Win_Buttons.loc3_pressed
-            self.Cg.char_spec = self.Win_Buttons.loc4_pressed
+            self.Cg.char_up = self.Wb.loc1_pressed
+            self.Cg.char_down = self.Wb.loc2_pressed
+            self.Cg.char_num = self.Wb.loc3_pressed
+            self.Cg.char_spec = self.Wb.loc4_pressed
         except Exception as e:  # catch any unexpected exceptions
             print(f"""[EXCEPTION] {e} | type: {type(e)}""")
 

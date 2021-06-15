@@ -44,7 +44,7 @@ clock = pygame.time.Clock()
 FPS = 60
 
 
-game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Win_Buttons=WD, Cg=Cg,
+game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Wb=WD, Cg=Cg,
             copy_button=COPY_BUTTON, reg_button=REG_BUTTON, clock=clock, FPS=FPS, save_button=save_button,
             save_input_field=save_input_field, save_back_button=save_back_button, save_save_button=save_save_button)
 game.run()

@@ -1,6 +1,7 @@
 from Classes import Code_Generator as CG
 from Classes import Window_Buttons
 from Classes import User_Input
+from Classes import Dark_Mode
 from itertools import cycle
 from Classes import Button
 from Classes import GUI
@@ -59,12 +60,8 @@ class Game:
                         5: 1073741917, 6: 1073741918, 7: 1073741919, 8: 1073741920, 9: 1073741921}
         }
 
-        self.load_img = pygame.image.load
-        self.mode_imgs = cycle([self.load_img("assets/dark-32.png"), self.load_img("assets/bright-32.png")])
-        self.mode_img = next(self.mode_imgs)
-        self.mode_rect = pygame.Rect((self.WIDTH - 36, 5, 32, 32))
-        self.base_colors = cycle([(255, 255, 255), (30, 30, 30)])
-        self.cur_base_color = next(self.base_colors)
+        self.dark_mode = Dark_Mode(self.WIN, [pygame.image.load("assets/dark-32.png"), pygame.image.load("assets/bright-32.png")],
+                                   [(255, 255, 255), (30, 30, 30)], self.WIDTH - (32 + 5), 5)
 
         self.Wb.setup_setting_buttons()
 
@@ -83,19 +80,17 @@ class Game:
         """
         if not save:
             # self.Cg is just the logic for the code generator and not the actual GUI that is used
-            self.Gui.draw()
+            self.dark_mode.draw()
             self.Wb.draw()
             for button in self.buttons:
                 button.draw()
             self.bar.draw()
-            self.WIN.blit(self.mode_img, (self.WIDTH - 36, 5))
             pygame.display.update()
         else:
-            self.Gui.draw()
+            self.dark_mode.draw()
             self.save_input_field.draw()
             self.save_back_button.draw()
             self.save_save_button.draw()
-            self.WIN.blit(self.mode_img, (self.WIDTH - 36, 5))
             pygame.display.update()
 
     def over(self, save=False):
@@ -196,10 +191,7 @@ class Game:
                         json.dump(data, f, indent=4)
 
         # universal events
-        if self.mode_rect.collidepoint(event.pos):
-            self.mode_img = next(self.mode_imgs)
-            self.cur_base_color = next(self.base_colors)
-            self.Gui.BASE_COLOR = self.cur_base_color
+        self.dark_mode.event_handler(event)
 
     def keyboard_events_handler(self, event, save=False):
         """

@@ -182,7 +182,7 @@ class Game:
                 self.copy(self.Cg.password)
             if self.reg_button.is_over(pygame.mouse.get_pos()):
                 self.Cg.get_code()
-            if self.save_button.is_over(pygame.mouse.get_pos()):
+            if self.save_button.is_over(pygame.mouse.get_pos()) and self.Cg.password != "":
                 self.save()
         else:
             # it checks if the user pressed the save button in the save menu

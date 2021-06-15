@@ -3,7 +3,6 @@ from Classes import Window_Buttons
 from Classes import User_Input
 from Classes import Button
 from Classes import Game
-from Classes import GUI
 import pygame
 
 
@@ -27,7 +26,6 @@ COLORS = {
 
 # setup the classes instances
 Cg = CG()
-GUI = GUI(WIDTH=HEIGHT, HEIGHT=HEIGHT, BASE_COLOR=COLORS["WHITE"], WIN=WIN)
 COPY_BUTTON = Button(x=round(WIDTH/2 - 250/2), y=HEIGHT - 70, width=250, height=50, WIN=WIN,
                      text="click to copy", text_color=COLORS["BLACK"], color=COLORS["BLUE"])
 REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=40, WIN=WIN,
@@ -44,7 +42,7 @@ clock = pygame.time.Clock()
 FPS = 60
 
 
-game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Gui=GUI, Wb=WD, Cg=Cg,
+game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Wb=WD, Cg=Cg,
             copy_button=COPY_BUTTON, reg_button=REG_BUTTON, clock=clock, FPS=FPS, save_button=save_button,
             save_input_field=save_input_field, save_back_button=save_back_button, save_save_button=save_save_button)
 game.run()

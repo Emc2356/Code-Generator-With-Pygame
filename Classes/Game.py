@@ -2,9 +2,7 @@ from Classes import Code_Generator as CG
 from Classes import Window_Buttons
 from Classes import User_Input
 from Classes import Dark_Mode
-from itertools import cycle
 from Classes import Button
-from Classes import GUI
 import pyperclip as pc
 import pygame
 import json
@@ -15,7 +13,7 @@ pygame.font.init()
 
 
 class Game:
-    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Gui: GUI, Wb: Window_Buttons,
+    def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
                  save_input_field: User_Input, save_back_button: Button, save_save_button: Button):
         """
@@ -42,7 +40,6 @@ class Game:
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
         self.bar = bar
-        self.Gui = Gui
         self.Wb = Wb
         self.Cg = Cg
         self.copy_button = copy_button
@@ -233,7 +230,7 @@ class Game:
         saves the code that is currently generated
         :return: None
         """
-        self.Gui.set_window(TITLE="Password Manager (save password)")
+        pygame.display.set_caption("Password Manager (save password)")
         while True:
             self.over(save=True)
             self.event_handler(save=True)
@@ -244,7 +241,7 @@ class Game:
         the main method to run the game
         :return:
         """
-        self.Gui.set_window(TITLE="Password Manager (create password)")
+        pygame.display.set_caption("Password Manager (create password)")
         while True:
             self.clock.tick(self.FPS)
             self.hook()

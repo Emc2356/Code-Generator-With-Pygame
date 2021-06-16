@@ -15,7 +15,8 @@ pygame.font.init()
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
-                 save_input_field: User_Input, save_back_button: Button, save_save_button: Button, dark_mode: Dark_Mode):
+                 save_input_field: User_Input, save_back_button: Button, save_save_button: Button, dark_mode: Dark_Mode,
+                 view_button: Button):
         """
         Parameters:
          ----------------------
@@ -34,6 +35,7 @@ class Game:
          save_input_field: User_Input
          save_back_button: Button
          save_save_button: Button
+         view_button: Button
 
         """
         self.WIN = WIN
@@ -51,6 +53,7 @@ class Game:
         self.save_input_field = save_input_field
         self.save_back_button = save_back_button
         self.save_save_button = save_save_button
+        self.view_button = view_button
         self.key_num = {
             "normal": {0: 48, 1: 49, 2: 50, 3: 51, 4: 52, 5: 53, 6: 54, 7: 55, 8: 56, 9: 57},
             "num_pad": {0: 1073741922, 1: 1073741913, 2: 1073741914, 3: 1073741915, 4: 1073741916,
@@ -81,6 +84,7 @@ class Game:
             for button in self.buttons:
                 button.draw()
             self.bar.draw()
+            self.view_button.draw()
             pygame.display.update()
         else:
             self.dark_mode.draw()

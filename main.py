@@ -33,7 +33,7 @@ REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=
                     text="click to regenerate the password", text_color=COLORS["BLACK"], color=COLORS["RED"], font_size=30)
 save_button = Button(x=WIDTH - COPY_BUTTON.get_width()/2 + 10, y=HEIGHT - 70, width=100, height=50,
                      WIN=WIN, text="save", text_color=COLORS["BLACK"], color=COLORS["GREEN"], font_size=60)
-save_save_button = Button(x=10, y=385, width=100, height=50, WIN=WIN,
+save_save_button = Button(x=15, y=385, width=100, height=50, WIN=WIN,
                           text_color=COLORS["BLACK"], color=COLORS["GREEN"], text="save", font_size=60)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)
@@ -41,11 +41,14 @@ save_input_field = User_Input(WIDTH, HEIGHT, 10, 50, WIDTH - 20, 50, (0, 0, 0), 
 save_back_button = Button(COLORS["RED"], 10, 440, 100, 50, WIN, COLORS["BLACK"], "Go back", font_size=35)
 dark_mode = Dark_Mode(WIN, [pygame.image.load("assets/mode-assets/dark-32.png"), pygame.image.load("assets/mode-assets/bright-32.png")],
                       [(255, 255, 255), (30, 30, 30)], WIDTH - (32 + 5), 5)
+view_button = Button(x=10, y=HEIGHT - 70, width=100, height=50,
+                     WIN=WIN, text="view", text_color=COLORS["BLACK"], color=COLORS["GREEN"], font_size=60)
 clock = pygame.time.Clock()
 FPS = 60
 
 
 game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Wb=WD, Cg=Cg, copy_button=COPY_BUTTON, reg_button=REG_BUTTON,
             clock=clock, FPS=FPS, save_button=save_button, save_input_field=save_input_field,
-            save_back_button=save_back_button, save_save_button=save_save_button, dark_mode=dark_mode)
+            save_back_button=save_back_button, save_save_button=save_save_button, dark_mode=dark_mode,
+            view_button=view_button)
 game.run()

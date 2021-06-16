@@ -43,7 +43,7 @@ dark_mode = Dark_Mode(WIN, [pygame.image.load("assets/mode-assets/dark-32.png"),
                       [(255, 255, 255), (30, 30, 30)], WIDTH - (32 + 5), 5)
 view_button = Button(x=10, y=HEIGHT - 70, width=100, height=50,
                      WIN=WIN, text="view", text_color=COLORS["BLACK"], color=COLORS["GREEN"], font_size=60)
-view_back = Button(COLORS["RED"], 10, 440, 100, 50, WIN, COLORS["BLACK"], "Go back", font_size=35)
+view_back = Button(COLORS["RED"], 390, 440, 100, 50, WIN, COLORS["BLACK"], "Go back", font_size=35)
 clock = pygame.time.Clock()
 FPS = 60
 

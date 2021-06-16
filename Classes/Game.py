@@ -270,9 +270,14 @@ class Game:
 
         with open("assets/codes.json", "r") as f:
             data = json.loads(f.read())
+            data_ = sorted(data.items())
+            data = {}
+            for i in data_:
+                data[i[0]] = i[1]
 
         codes_name = list(data.keys())
         codes = list(data.values())
+        spacing = 70
 
         while True:
             self.clock.tick(self.FPS)
@@ -294,9 +299,21 @@ class Game:
                     self.dark_mode.event_handler(event)
 
             # draw
+            codes_surfaces = []
+            for code_name in codes_name:
+                codes_surfaces.append(pygame.font.SysFont('comicsans', 30).render(code_name, True, (0, 0, 0)))
+
+            for codes_surface in codes_surfaces:
+                self.WIN.blit(codes_surface, (0, 0))
 
             self.dark_mode.draw()
-            pygame.draw.rect(self.WIN, (0, 0, 0), (400, 50, 64, 64), 0)
+
+            cur_space = 50
+            for codes_surface in codes_surfaces:
+                self.WIN.blit(codes_surface, (10, cur_space + pygame.image.load("assets/delete/bright-64.png").get_height()/3))
+                self.WIN.blit(pygame.image.load("assets/delete/bright-64.png"), (self.WIDTH - 59 - 120, cur_space))
+                cur_space += spacing
+
             self.view_back.draw()
             pygame.display.update()
 

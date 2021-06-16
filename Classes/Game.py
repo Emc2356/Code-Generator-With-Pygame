@@ -15,7 +15,7 @@ pygame.font.init()
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
-                 save_input_field: User_Input, save_back_button: Button, save_save_button: Button):
+                 save_input_field: User_Input, save_back_button: Button, save_save_button: Button, dark_mode: Dark_Mode):
         """
         Parameters:
          ----------------------
@@ -57,8 +57,7 @@ class Game:
                         5: 1073741917, 6: 1073741918, 7: 1073741919, 8: 1073741920, 9: 1073741921}
         }
 
-        self.dark_mode = Dark_Mode(self.WIN, [pygame.image.load("assets/dark-32.png"), pygame.image.load("assets/bright-32.png")],
-                                   [(255, 255, 255), (30, 30, 30)], self.WIDTH - (32 + 5), 5)
+        self.dark_mode = dark_mode
 
         self.Wb.setup_setting_buttons()
 

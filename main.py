@@ -1,6 +1,7 @@
 from Classes import Code_Generator as CG
 from Classes import Window_Buttons
 from Classes import User_Input
+from Classes import Dark_Mode
 from Classes import Button
 from Classes import Game
 import pygame
@@ -38,11 +39,13 @@ WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)
 save_input_field = User_Input(WIDTH, HEIGHT, 10, 50, WIDTH - 20, 50, (0, 0, 0), WIN, (255, 255, 255), 60)
 save_back_button = Button(COLORS["RED"], 10, 440, 100, 50, WIN, COLORS["BLACK"], "Go back", font_size=35)
+dark_mode = Dark_Mode(WIN, [pygame.image.load("assets/dark-32.png"), pygame.image.load("assets/bright-32.png")],
+                                   [(255, 255, 255), (30, 30, 30)], WIDTH - (32 + 5), 5)
 clock = pygame.time.Clock()
 FPS = 60
 
 
-game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Wb=WD, Cg=Cg,
-            copy_button=COPY_BUTTON, reg_button=REG_BUTTON, clock=clock, FPS=FPS, save_button=save_button,
-            save_input_field=save_input_field, save_back_button=save_back_button, save_save_button=save_save_button)
+game = Game(WIN=WIN, WIDTH=WIDTH, HEIGHT=HEIGHT, bar=bar, Wb=WD, Cg=Cg, copy_button=COPY_BUTTON, reg_button=REG_BUTTON,
+            clock=clock, FPS=FPS, save_button=save_button, save_input_field=save_input_field,
+            save_back_button=save_back_button, save_save_button=save_save_button, dark_mode=dark_mode)
 game.run()

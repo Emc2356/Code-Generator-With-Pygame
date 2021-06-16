@@ -293,7 +293,7 @@ class Game:
                     quit(-1)
                 # checks if the mouse wheel is moving in the y axis and if yes it addes it to a variable
                 if event.type == pygame.MOUSEWHEEL:
-                    shift_amount += -event.y*3
+                    shift_amount += -event.y*6
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.view_back.is_over(pygame.mouse.get_pos()):
                         self.run()
@@ -301,6 +301,8 @@ class Game:
 
             # draw
             codes_surfaces = []
+            buttons = []
+
             for code_name in codes_name:
                 codes_surfaces.append(pygame.font.SysFont('comicsans', 30).render(code_name, True, (0, 0, 0)))
 
@@ -308,6 +310,20 @@ class Game:
                 self.WIN.blit(codes_surface, (0, 0))
 
             self.dark_mode.draw()
+
+            for i in range(len(codes_name)):
+                buttons.append(Button(self.dark_mode.cur_color, self.WIDTH - 59 - 180, cur_space, 64, 64, self.WIN, (0, 0, 0), "copy", font_size=30))
+                cur_space += spacing
+
+            cur_space = 50
+
+            cur_space += shift_amount
+            for button in buttons:
+                button.y = cur_space
+                button.draw()
+                cur_space += spacing
+
+            cur_space = 50
 
             cur_space += shift_amount
             for codes_surface in codes_surfaces:

@@ -291,7 +291,7 @@ class Game:
                 if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
                     pygame.quit()
                     quit(-1)
-                # checks if the mouse wheel is moving in the y axis and if yes it addes it to a variable
+                # checks if the mouse wheel is moving in the y axis and if yes it adds it to a variable
                 if event.type == pygame.MOUSEWHEEL:
                     shift_amount += -event.y*6
                 if event.type == pygame.MOUSEBUTTONDOWN:
@@ -300,37 +300,44 @@ class Game:
                     self.dark_mode.event_handler(event)
 
             # draw
-            codes_surfaces = []
-            buttons = []
+            codes_name_surfaces = []
+            trash_cans = []
+            copy_buttons = []
 
+            # load the code name surfaces in a list
+            cur_space += shift_amount
             for code_name in codes_name:
-                codes_surfaces.append(pygame.font.SysFont('comicsans', 30).render(code_name, True, (0, 0, 0)))
+                codes_name_surfaces.append((pygame.font.SysFont('comicsans', 30).render(code_name, True, (0, 0, 0)), (5, cur_space + 20)))
+                cur_space += spacing
+            cur_space = 50
 
-            for codes_surface in codes_surfaces:
-                self.WIN.blit(codes_surface, (0, 0))
+            # load the copy buttons in a list
+            cur_space += shift_amount
+            for i in range(len(codes_name)):
+                copy_buttons.append(Button(self.dark_mode.cur_color, self.WIDTH - 59 - 180, cur_space, 64, 64, self.WIN, (0, 0, 0), "copy", font_size=30))
+                cur_space += spacing
+            cur_space = 50
+
+            # load the trash can buttons in a list
+            cur_space += shift_amount
+            for i in range(len(codes_name)):
+                trash_cans.append((pygame.image.load("assets/delete/bright-64.png"), (self.WIDTH - 59 - 120, cur_space)))
+                cur_space += spacing
+            cur_space = 50
 
             self.dark_mode.draw()
 
-            for i in range(len(codes_name)):
-                buttons.append(Button(self.dark_mode.cur_color, self.WIDTH - 59 - 180, cur_space, 64, 64, self.WIN, (0, 0, 0), "copy", font_size=30))
-                cur_space += spacing
+            # draw the name of the codes
+            for codes_name_surface in codes_name_surfaces:
+                self.WIN.blit(codes_name_surface[0], codes_name_surface[1])
 
-            cur_space = 50
+            # draw the copy buttons
+            for copy_button in copy_buttons:
+                copy_button.draw()
 
-            cur_space += shift_amount
-            for button in buttons:
-                button.y = cur_space
-                button.draw()
-                cur_space += spacing
-
-            cur_space = 50
-
-            cur_space += shift_amount
-            for codes_surface in codes_surfaces:
-                self.WIN.blit(codes_surface, (10, cur_space + pygame.image.load("assets/delete/bright-64.png").get_height()/3))
-                self.WIN.blit(pygame.image.load("assets/delete/bright-64.png"), (self.WIDTH - 59 - 120, cur_space))
-                cur_space += spacing
-            cur_space = 50
+            # draw the trash cans
+            for trash_can in trash_cans:
+                self.WIN.blit(trash_can[0], trash_can[1])
 
             self.view_back.draw()
             pygame.display.update()

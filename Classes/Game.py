@@ -8,10 +8,6 @@ import pygame
 import json
 
 
-pygame.init()
-pygame.font.init()
-
-
 class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
@@ -25,7 +21,6 @@ class Game:
          WIDTH: int
          HEIGHT: int
          bar: Bar
-         Gui: GUI
          Wb: Window_Buttons
          Cg: CG
          copy_button: Button
@@ -278,6 +273,8 @@ class Game:
         codes_name = list(data.keys())
         codes = list(data.values())
         spacing = 70
+        cur_space = 50
+        shift_amount = 0
 
         while True:
             self.clock.tick(self.FPS)
@@ -290,9 +287,13 @@ class Game:
 
             # events
             for event in pygame.event.get():
+                # checks if the user wants to quit
                 if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
                     pygame.quit()
                     quit(-1)
+                # checks if the mouse wheel is moving in the y axis and if yes it addes it to a variable
+                if event.type == pygame.MOUSEWHEEL:
+                    shift_amount += -event.y*3
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.view_back.is_over(pygame.mouse.get_pos()):
                         self.run()
@@ -308,11 +309,12 @@ class Game:
 
             self.dark_mode.draw()
 
-            cur_space = 50
+            cur_space += shift_amount
             for codes_surface in codes_surfaces:
                 self.WIN.blit(codes_surface, (10, cur_space + pygame.image.load("assets/delete/bright-64.png").get_height()/3))
                 self.WIN.blit(pygame.image.load("assets/delete/bright-64.png"), (self.WIDTH - 59 - 120, cur_space))
                 cur_space += spacing
+            cur_space = 50
 
             self.view_back.draw()
             pygame.display.update()

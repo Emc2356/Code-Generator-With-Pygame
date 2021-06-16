@@ -267,14 +267,21 @@ class Game:
         :return: None
         """
         pygame.display.set_caption("Password Manager (view password)")
+
+        with open("assets/codes.json", "r") as f:
+            data = json.loads(f.read())
+
+        codes_name = list(data.keys())
+        codes = list(data.values())
+
         while True:
             self.clock.tick(self.FPS)
+
             # over
             if self.view_back.is_over(pygame.mouse.get_pos()):
                 self.view_back.color = (255, 50, 39)
             else:
                 self.view_back.color = (255, 0, 0)
-
 
             # events
             for event in pygame.event.get():
@@ -289,6 +296,7 @@ class Game:
             # draw
 
             self.dark_mode.draw()
+            pygame.draw.rect(self.WIN, (0, 0, 0), (400, 50, 64, 64), 0)
             self.view_back.draw()
             pygame.display.update()
 

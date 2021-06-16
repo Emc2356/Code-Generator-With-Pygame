@@ -16,7 +16,7 @@ class Game:
     def __init__(self, WIN: pygame.Surface, WIDTH: int, HEIGHT: int, bar: User_Input, Wb: Window_Buttons,
                  Cg: CG, copy_button: Button, reg_button: Button, clock: pygame.time.Clock, FPS: int, save_button: Button,
                  save_input_field: User_Input, save_back_button: Button, save_save_button: Button, dark_mode: Dark_Mode,
-                 view_button: Button):
+                 view_button: Button, view_back: Button):
         """
         Parameters:
          ----------------------
@@ -54,6 +54,7 @@ class Game:
         self.save_back_button = save_back_button
         self.save_save_button = save_save_button
         self.view_button = view_button
+        self.view_back = view_back
         self.key_num = {
             "normal": {0: 48, 1: 49, 2: 50, 3: 51, 4: 52, 5: 53, 6: 54, 7: 55, 8: 56, 9: 57},
             "num_pad": {0: 1073741922, 1: 1073741913, 2: 1073741914, 3: 1073741915, 4: 1073741916,
@@ -117,6 +118,12 @@ class Game:
                 self.save_button.color = (80, 255, 30)
             else:
                 self.save_button.color = (0, 255, 0)
+
+            # the view button
+            if self.view_button.is_over(pygame.mouse.get_pos()):
+                self.view_button.color = (80, 255, 30)
+            else:
+                self.view_button.color = (0, 255, 0)
         else:
             # save back button
             if self.save_back_button.is_over(pygame.mouse.get_pos()):
@@ -179,6 +186,8 @@ class Game:
                 self.Cg.get_code()
             if self.save_button.is_over(pygame.mouse.get_pos()) and self.Cg.password != "":
                 self.save()
+            if self.view_button.is_over(pygame.mouse.get_pos()):
+                self.view()
         else:
             # it checks if the user pressed the save button in the save menu
             if self.save_save_button.is_over(pygame.mouse.get_pos()):
@@ -251,6 +260,37 @@ class Game:
             self.event_handler()
             self.over()
             self.draw()
+
+    def view(self):
+        """
+        this method runs when the user wants to view the passwords in the assets/codes.json
+        :return: None
+        """
+        pygame.display.set_caption("Password Manager (view password)")
+        while True:
+            self.clock.tick(self.FPS)
+            # over
+            if self.view_back.is_over(pygame.mouse.get_pos()):
+                self.view_back.color = (255, 50, 39)
+            else:
+                self.view_back.color = (255, 0, 0)
+
+
+            # events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                    pygame.quit()
+                    quit(-1)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.view_back.is_over(pygame.mouse.get_pos()):
+                        self.run()
+                    self.dark_mode.event_handler(event)
+
+            # draw
+
+            self.dark_mode.draw()
+            self.view_back.draw()
+            pygame.display.update()
 
 
 if __name__ == '__main__':

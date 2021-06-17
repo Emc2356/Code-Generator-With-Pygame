@@ -265,10 +265,6 @@ class Game:
 
         with open("assets/codes.json", "r") as f:
             data = json.loads(f.read())
-            data_ = sorted(data.items())
-            data = {}
-            for i in data_:
-                data[i[0]] = i[1]
 
         codes_name = list(data.keys())
         codes = list(data.values())
@@ -346,8 +342,14 @@ class Game:
                             shift_amount += -event.y*6
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    # check if the use wants to go back to the main menu
                     if self.view_back.is_over(pygame.mouse.get_pos()):
                         self.run()
+                    # check if the user wants to copy a code
+                    for copy_button in copy_buttons:
+                        if copy_button.is_over(pygame.mouse.get_pos()):
+                            self.copy(codes[copy_buttons.index(copy_button)])
+
                     self.dark_mode.event_handler(event)
 
 

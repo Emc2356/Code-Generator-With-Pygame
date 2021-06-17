@@ -33,7 +33,7 @@ REG_BUTTON = Button(x=round(WIDTH/2 - 340/2), y=HEIGHT - 115, width=340, height=
                     text="click to regenerate the password", text_color=COLORS["BLACK"], color=COLORS["RED"], font_size=30)
 save_button = Button(x=WIDTH - COPY_BUTTON.get_width()/2 + 10, y=HEIGHT - 70, width=100, height=50,
                      WIN=WIN, text="save", text_color=COLORS["BLACK"], color=COLORS["GREEN"], font_size=60)
-save_save_button = Button(x=15, y=385, width=100, height=50, WIN=WIN,
+save_save_button = Button(x=10, y=385, width=100, height=50, WIN=WIN,
                           text_color=COLORS["BLACK"], color=COLORS["GREEN"], text="save", font_size=60)
 WD = Window_Buttons(WIDTH, HEIGHT, WIN)
 bar = User_Input(WIDTH, HEIGHT, round(WIDTH/2 - 150/2), 20, 150, 50, COLORS["BLACK"], WIN, COLORS["WHITE"], 50)

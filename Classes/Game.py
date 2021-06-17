@@ -349,6 +349,19 @@ class Game:
                     for copy_button in copy_buttons:
                         if copy_button.is_over(pygame.mouse.get_pos()):
                             self.copy(codes[copy_buttons.index(copy_button)])
+                    # checks if the user wants to delete a code from the file
+                    for trash_can in trash_cans:
+                        if pygame.Rect((trash_can[1][0], trash_can[1][1], 64, 64)).collidepoint(pygame.mouse.get_pos()):
+                            print(data)
+                            data.pop(codes_name[trash_cans.index(trash_can)])
+                            print(data)
+                            with open("./assets/codes.json", "w") as f:
+                                print(1)
+                                f.truncate(0)
+                                print(1)
+                                json.dump(data, f, indent=4)
+                                print(1)
+                            self.view()
 
                     self.dark_mode.event_handler(event)
 

@@ -340,7 +340,7 @@ class Game:
                     elif event.y < 0:  # negative aka down
                         if trash_cans [0][1][1] <= 0:
                             shift_amount += -event.y*6
-
+                # checks if the user has clicked the mouse
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     # check if the use wants to go back to the main menu
                     if self.view_back.is_over(pygame.mouse.get_pos()):
@@ -352,15 +352,10 @@ class Game:
                     # checks if the user wants to delete a code from the file
                     for trash_can in trash_cans:
                         if pygame.Rect((trash_can[1][0], trash_can[1][1], 64, 64)).collidepoint(pygame.mouse.get_pos()):
-                            print(data)
                             data.pop(codes_name[trash_cans.index(trash_can)])
-                            print(data)
                             with open("./assets/codes.json", "w") as f:
-                                print(1)
                                 f.truncate(0)
-                                print(1)
                                 json.dump(data, f, indent=4)
-                                print(1)
                             self.view()
 
                     self.dark_mode.event_handler(event)

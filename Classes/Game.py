@@ -285,20 +285,6 @@ class Game:
             else:
                 self.view_back.color = (255, 0, 0)
 
-            # events
-            for event in pygame.event.get():
-                # checks if the user wants to quit
-                if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
-                    pygame.quit()
-                    quit(-1)
-                # checks if the mouse wheel is moving in the y axis and if yes it adds it to a variable
-                if event.type == pygame.MOUSEWHEEL:
-                    shift_amount += -event.y*6
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.view_back.is_over(pygame.mouse.get_pos()):
-                        self.run()
-                    self.dark_mode.event_handler(event)
-
             # draw
             codes_name_surfaces = []
             trash_cans = []
@@ -341,6 +327,21 @@ class Game:
 
             self.view_back.draw()
             pygame.display.update()
+
+            # events
+            for event in pygame.event.get():
+                # checks if the user wants to quit
+                if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                    pygame.quit()
+                    quit(-1)
+                # checks if the mouse wheel is moving in the y axis and if yes it adds it to a variable
+                if event.type == pygame.MOUSEWHEEL:
+                    shift_amount += -event.y*6
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.view_back.is_over(pygame.mouse.get_pos()):
+                        self.run()
+                    self.dark_mode.event_handler(event)
 
 
 if __name__ == '__main__':

@@ -286,6 +286,8 @@ class Game:
                 self.view_back.color = (255, 0, 0)
 
             # draw
+
+            # re initialize the lists and later repopulate them
             codes_name_surfaces = []
             trash_cans = []
             copy_buttons = []
@@ -335,8 +337,13 @@ class Game:
                     pygame.quit()
                     quit(-1)
                 # checks if the mouse wheel is moving in the y axis and if yes it adds it to a variable
-                if event.type == pygame.MOUSEWHEEL:
-                    shift_amount += -event.y*6
+                if event.type == pygame.MOUSEWHEEL:  # positive == up and negative == down
+                    if event.y > 0:  # positive aka up
+                        if trash_cans[-1][1][1] + 64 >= self.WIDTH:
+                            shift_amount += -event.y*6
+                    elif event.y < 0:  # negative aka down
+                        if trash_cans [0][1][1] <= 0:
+                            shift_amount += -event.y*6
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.view_back.is_over(pygame.mouse.get_pos()):
